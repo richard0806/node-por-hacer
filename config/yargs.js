@@ -1,23 +1,31 @@
-const desc = {
-    descripcion: {
-        demand: true,
-        alias: 'd'
-    }
+const descripcion = {
+    demand: true,
+    alias: 'd',
+    desc: 'Descripción de la tarea por hacer'
 };
 
-const comp = {
-    completado: {
-        alias: 'c',
-        default: true
-    }
+const completado = {
+    default: true,
+    alias: 'c',
+    desc: 'Marca como completado o pendiente la tarea'
 };
+
+
 
 const argv = require('yargs')
-    .command('crear', 'Crea una Tarea por hacer', desc)
-    .command('actualizar', 'Actualiza una Tarea por hacer', { desc, comp })
-    .command('borrar', 'Borrar una Tarea por hacer', desc)
+    .command('crear', 'Crear un elemento por hacer', {
+        descripcion
+    })
+    .command('actualizar', 'Actualiza el estado completado de una tarea', {
+        descripcion,
+        completado
+    })
+    .command('borrar', 'Borra una tarea', {
+        descripcion
+    })
     .help()
     .argv;
+
 
 module.exports = {
     argv
